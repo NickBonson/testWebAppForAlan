@@ -15,6 +15,28 @@ window.addEventListener('DOMContentLoaded', () => {
     vy: 0,
   };
 
+  // Listen for arrow key presses to control player velocity
+  const handleKey = (event, isKeyDown) => {
+    const speed = 5;
+    switch (event.key) {
+      case 'ArrowLeft':
+        player.vx = isKeyDown ? -speed : 0;
+        break;
+      case 'ArrowRight':
+        player.vx = isKeyDown ? speed : 0;
+        break;
+      case 'ArrowUp':
+        player.vy = isKeyDown ? -speed : 0;
+        break;
+      case 'ArrowDown':
+        player.vy = isKeyDown ? speed : 0;
+        break;
+    }
+  };
+
+  window.addEventListener('keydown', (e) => handleKey(e, true));
+  window.addEventListener('keyup', (e) => handleKey(e, false));
+
   const drawBackground = () => {
     ctx.fillStyle = 'skyblue';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
